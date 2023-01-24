@@ -51,7 +51,7 @@ runs:
         run: |
           mkdir -p ${{ inputs.proto-folder }}/python-generated
           cd ${{ inputs.proto-folder }}/python-generated
-          protoc -I=. --proto_path=./ --python_out=./ ../${{ inputs.proto-file }}
+          protoc -I=. --proto_path=../ --python_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` --proto_path=.. ../${{ inputs.proto-file }}
 
       - name: Upload compiled proto files
