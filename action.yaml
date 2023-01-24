@@ -30,24 +30,28 @@ runs:
     steps:
       - name: Compile proto file for CPP
         working-directory: ${{ inputs.proto-folder }}/cpp-generated
+        shell: bash
         run: |
           protoc -I=. --proto_path=./ --cpp_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --proto_path=.. ../${{ inputs.proto-file }}
               
       - name: Upload compiled proto files
         uses: actions/upload-artifact@v2
+        shell: bash
         with:
           name: cpp_generated
           path: ./cpp-generated
 
       - name: Compile proto file for Python
         working-directory: ${{ inputs.proto-folder }}/python-generated
+        shell: bash
         run: |
           protoc -I=. --proto_path=./ --python_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` --proto_path=.. ../${{ inputs.proto-file }}
 
       - name: Upload compiled proto files
         uses: actions/upload-artifact@v2
+        shell: bash
         with:
           name: python_generated
           path: ./python-generated
