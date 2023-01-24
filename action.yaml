@@ -63,5 +63,5 @@ runs:
         id: echo_name
         shell: bash
         run: |
-          echo "cpp_artifact=$(ls -la ./cpp-generated | grep pb | awk {'print $NF'})" >> $GITHUB_OUTPUT
-          echo "python_artifact={$(ls -la ./python-generated | grep pb | awk {'print $NF'})" >> $GITHUB_OUTPUT
+          echo "cpp_artifact=$(ls -1 ./cpp-generated | grep pb)" >> $GITHUB_OUTPUT
+          echo "python_artifact=$(ls -1 ./python-generated | grep pb)" >> $GITHUB_OUTPUT
