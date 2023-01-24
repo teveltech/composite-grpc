@@ -18,9 +18,12 @@ inputs:
     default: x86_64
     
 outputs:
-  package:
-    description: 'The new package name and version'
-    value: ${{ steps.echo_name.outputs.package-name }}
+  cpp_artifact:
+    description: 'The new artifact names'
+    value: ${{ steps.echo_name.outputs.cpp_artifact }}
+  python_artifact:
+      description: 'The new artifact names'
+      value: ${{ steps.echo_name.outputs.python_artifact }}
     
 runs:
     using: "composite"
@@ -49,10 +52,10 @@ runs:
           name: python_generated
           path: ./python-generated
 
-      # - name: Echo package name
-      #   id: echo_name
-      #   shell: bash
-      #   run: |
-      #     echo \"$(tac ${{ inputs.package-folder }}conanfile.py | grep -e 'name =' -e '__version__ =' | awk -F"[\"\"]" '{printf $2"/"}' | cut -d "/" -f 1,2)\"
-      #     echo "::set-output name=package-name:: \
-      #     $(echo \"$(tac ${{ inputs.package-folder }}conanfile.py | grep -e 'name =' -e '__version__ =' | awk -F"[\"\"]" '{printf $2"/"}' | cut -d "/" -f 1,2)\")"
+      - name: Echo package name
+        working-directory: ${{ inputs.proto-folder }}
+        id: echo_name
+        shell: bash
+        run: |
+          echo "{cpp_artifact}={ls -la ./cpp-generated}" >> $GITHUB_OUTPUT
+          echo "{python_artifact}={ls -la ./python-generated}" >> $GITHUB_OUTPUT
