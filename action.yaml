@@ -37,7 +37,6 @@ runs:
               
       - name: Upload compiled proto files
         uses: actions/upload-artifact@v2
-        shell: bash
         with:
           name: cpp_generated
           path: ./cpp-generated
@@ -51,7 +50,6 @@ runs:
 
       - name: Upload compiled proto files
         uses: actions/upload-artifact@v2
-        shell: bash
         with:
           name: python_generated
           path: ./python-generated
