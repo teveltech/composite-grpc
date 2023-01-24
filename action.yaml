@@ -29,11 +29,11 @@ runs:
     using: "composite"
     steps:
       - name: Compile proto file for CPP
-        working-directory: ${{ inputs.proto-folder }}/cpp-generated
+        # working-directory: ${{ inputs.proto-folder }}/cpp-generated
         shell: bash
         run: |
-          ls -la
-          pwd
+          mkdir -p ${{ inputs.proto-folder }}/cpp-generated
+          cd ${{ inputs.proto-folder }}/cpp-generated
           protoc -I=. --proto_path=./ --cpp_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --proto_path=.. ../${{ inputs.proto-file }}
               
@@ -44,9 +44,11 @@ runs:
           path: ./cpp-generated
 
       - name: Compile proto file for Python
-        working-directory: ${{ inputs.proto-folder }}/python-generated
+        # working-directory: ${{ inputs.proto-folder }}/python-generated
         shell: bash
         run: |
+          mkdir -p ${{ inputs.proto-folder }}/python-generated
+          cd ${{ inputs.proto-folder }}/python-generated
           protoc -I=. --proto_path=./ --python_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` --proto_path=.. ../${{ inputs.proto-file }}
 
