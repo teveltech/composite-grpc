@@ -32,8 +32,6 @@ runs:
         # working-directory: ${{ inputs.proto-folder }}/cpp-generated
         shell: bash
         run: |
-          echo $(ls -la)
-          echo $(pwd)
           mkdir -p ${{ inputs.proto-folder }}/cpp-generated
           cd ${{ inputs.proto-folder }}/cpp-generated
           protoc -I=. --proto_path=../ --cpp_out=./ ../${{ inputs.proto-file }}
@@ -65,5 +63,5 @@ runs:
         id: echo_name
         shell: bash
         run: |
-          echo "{cpp_artifact}={ls -la ./cpp-generated}" >> $GITHUB_OUTPUT
-          echo "{python_artifact}={ls -la ./python-generated}" >> $GITHUB_OUTPUT
+          echo "{cpp_artifact}={$(ls -la ./cpp-generated)}" >> $GITHUB_OUTPUT
+          echo "{python_artifact}={$(ls -la ./python-generated)}" >> $GITHUB_OUTPUT
