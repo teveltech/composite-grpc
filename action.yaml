@@ -7,7 +7,7 @@ inputs:
   #   description: 'The new tag to push'
   proto-folder:
     required: true
-    description: 'Path to protofile'
+    description: 'Path of protofile'
     default: './'
   proto-file:
       required: true
@@ -32,6 +32,8 @@ runs:
         working-directory: ${{ inputs.proto-folder }}/cpp-generated
         shell: bash
         run: |
+          ls -la
+          pwd
           protoc -I=. --proto_path=./ --cpp_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --proto_path=.. ../${{ inputs.proto-file }}
               
