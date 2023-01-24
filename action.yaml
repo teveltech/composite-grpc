@@ -33,6 +33,7 @@ runs:
         shell: bash
         run: |
           echo $(ls -la)
+          echo $(pwd)
           mkdir -p ${{ inputs.proto-folder }}/cpp-generated
           cd ${{ inputs.proto-folder }}/cpp-generated
           protoc -I=. --proto_path=./ --cpp_out=./ ../${{ inputs.proto-file }}
