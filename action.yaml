@@ -24,6 +24,9 @@ outputs:
   python_artifact:
       description: 'The new artifact names'
       value: ${{ steps.echo_name.outputs.python_artifact }}
+  protoc_version:
+      description: 'Protoc version used to compile the artifacts'
+      value: ${{ steps.echo_name.outputs.protoc_version }}
     
 runs:
     using: "composite"
