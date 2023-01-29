@@ -63,8 +63,9 @@ runs:
         id: echo_name
         shell: bash
         run: |
-          echo "cpp_artifact=xyz.abc" >> $GITHUB_OUTPUT
-          echo "python_artifact=abc.xyz" >> $GITHUB_OUTPUT
+          echo "cpp_artifact=xyz.abc.zsz" >> $GITHUB_OUTPUT
+          echo "python_artifact=abc.xyz.zsz" >> $GITHUB_OUTPUT
+          echo "protoc_version=$(protoc --version | awk {'print $NF'})" >> $GITHUB_OUTPUT
 
         # echo "cpp_artifact=$(ls -1 ./cpp-generated | grep pb.h)" >> $GITHUB_OUTPUT
         # echo "python_artifact=$(ls -1 ./python-generated | grep pb2.py)" >> $GITHUB_OUTPUT
