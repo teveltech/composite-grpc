@@ -27,6 +27,10 @@ outputs:
   protoc_version:
       description: 'Protoc version used to compile the artifacts'
       value: ${{ steps.echo_name.outputs.protoc_version }}
+  proto_folder:
+      description: 'Protoc version used to compile the artifacts'
+      value: ${{ inputs.proto-folder }}
+
     
 runs:
     using: "composite"
