@@ -50,7 +50,7 @@ runs:
         uses: actions/upload-artifact@v2
         with:
           name: cpp_generated
-          path: ./cpp-generated
+          path: ${{ inputs.proto-folder }}/cpp-generated
           if-no-files-found: error
 
       - name: Compile proto file for Python
@@ -68,7 +68,7 @@ runs:
         uses: actions/upload-artifact@v2
         with:
           name: python_generated
-          path: ./python-generated
+          path: ${{ inputs.proto-folder }}/python-generated
           if-no-files-found: error
 
 
