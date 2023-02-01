@@ -41,8 +41,10 @@ runs:
         run: |
           mkdir -p ${{ inputs.proto-folder }}/cpp-generated
           cd ${{ inputs.proto-folder }}/cpp-generated
+          echo $(ls -la)
           protoc -I=. --proto_path=../ --cpp_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --proto_path=.. ../${{ inputs.proto-file }}
+          echo $(ls -la)
               
       - name: Upload compiled proto files
         uses: actions/upload-artifact@v2
@@ -57,8 +59,10 @@ runs:
         run: |
           mkdir -p ${{ inputs.proto-folder }}/python-generated
           cd ${{ inputs.proto-folder }}/python-generated
+          echo $(ls -la)
           protoc -I=. --proto_path=../ --python_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` --proto_path=.. ../${{ inputs.proto-file }}
+          echo $(ls -la)
 
       - name: Upload compiled proto files
         uses: actions/upload-artifact@v2
