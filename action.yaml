@@ -45,7 +45,7 @@ runs:
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --proto_path=.. ../${{ inputs.proto-file }}
               
       - name: Upload compiled proto files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: cpp_generated
           path: ./cpp-generated
@@ -61,7 +61,7 @@ runs:
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_python_plugin` --proto_path=.. ../${{ inputs.proto-file }}
 
       - name: Upload compiled proto files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: python_generated
           path: ./python-generated
