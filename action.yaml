@@ -44,7 +44,8 @@ runs:
           echo "parent dir"
           echo $(ls -la ..)
           echo "python-generated"
-          echo $(ls -la)          protoc -I=. --proto_path=../ --cpp_out=./ ../${{ inputs.proto-file }}
+          echo $(ls -la)          
+          protoc -I=. --proto_path=../ --cpp_out=./ ../${{ inputs.proto-file }}
           protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` --proto_path=.. ../${{ inputs.proto-file }}
           echo $(ls -la)
               
